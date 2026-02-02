@@ -1,8 +1,9 @@
+
 compile: main.c 
-	 gcc main.c -o ming
+	 gcc main.c -o ming 
 
 run: ming
-	 ./ming
+	 ./ming $(var)
 
 clean: ming
 	 rm ming

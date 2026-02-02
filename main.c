@@ -7,57 +7,46 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "node.h"
+#include "std_node.h"
+#include <string.h>
 
 int main(int argc, const char * argv[]) {
-    int c=5;
-    struct node a,b,*head ;
-    a.value = c;
-    a.next=&b;
-    head=&a;
-    b.value=head->value+3;
+        //printf("%s\n",argv[4]);
+        typedef struct std_node* NodePtr;
+        NodePtr head,temp;
+        head=(NodePtr) malloc(sizeof(struct std_node));
+        temp=head;
 
-    printf("%d\n", head ->value ); //what value for 5
-    printf("%d\n", head ->next->value ); //what value for 8
-/*  Exercise I
-    1. Add 1 more than at the end
-    2. Add value(11)
-    3. Make next become NULL
- */
-    
-/*  Exercise II
-        1. Add 1 more than at the begining!!!!
-        2. Add value (2)
-        
-*/
-    typedef struct node* NodePtr;
-    NodePtr tmp=head; //add temp value to faciliate
-        
-    /*  Exercise III Use loop to print everything
-        int i,n=5;
-        for(i=0;i<n;i++){
-            printf("%3d", tmp->value);
-          // What is missing???
+        int i=1,n=(argc-1)/2;
+        for( i; i < n ; i++)
+        {
+            temp->id =atoi(argv[(i*2)-1]);
+            strcpy(temp->name,argv[i*2]);
+            // temp->name = argv[2];
+            temp->next = (NodePtr) malloc(sizeof(struct std_node));
+            temp = temp->next;
         }
-    */
-    
-   /*  Exercise IV change to while loop!! (you can use NULL to help)
-       
-         while(){
-            printf("%3d", tmp->value);
-           // What is missing???
-        }
-    */
-    
- /*  Exercise V Use malloc to create all nodes, instead of create a struct!!
-         //use a loop to help
-          
-     */
+        temp->id =atoi(argv[(i*2)-1]);
+        strcpy(temp->name,argv[i*2]);
+        temp->next =NULL;
 
-    /*  Exercise VI Free all node !!
-         //use a loop to help
+
+
+        temp=head;
+        while(temp){
+            printf("%d %s\n",temp->id,temp->name);
+            temp=temp->next;
+       }
+
+    temp=head;
+    while(temp)
+    {
+        head = head->next;
+        free(temp);
+        temp = head;
+    }
+
           
-     */
     
     return 0;
 }
